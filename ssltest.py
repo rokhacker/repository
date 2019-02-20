@@ -1,3 +1,4 @@
+```bash
 #!/usr/bin/python
 
 # Quick and dirty demonstration of CVE-2014-0160 by Jared Stafford (jspenguin@jspenguin.org)
@@ -134,3 +135,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+```
