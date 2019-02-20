@@ -1,4 +1,4 @@
-*** NMAP Options ***
+***NMAP Options***
 
 
 ```bash
@@ -29,7 +29,7 @@ sys     0m1.746s
 ```
 
 
-|<center>Option</center>|<center>Description</center> |
+| Option | Description |
 |:--------:|:--------|
 |**-PN**| do not ping scan |
 |**-O** | Enable OS detection |
