@@ -1,7 +1,7 @@
 
-source link : https://github.com/catonrug/raspbian-zabbix-3/blob/master/server-install.sh
+***source link*** : https://github.com/catonrug/raspbian-zabbix-3/blob/master/server-install.sh
 
-
+```bash
 # install applications
 sudo apt-get update -y && apt-get upgrade -y
 
@@ -123,3 +123,4 @@ sed -i "s/^\\\$ZBX_SERVER_NAME = .*$/\\\$ZBX_SERVER_NAME = \d039\`echo \$ipaddre
 EOF
 chmod +x /etc/network/if-up.d/zabbix-server-ip
 
+```
