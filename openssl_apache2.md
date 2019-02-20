@@ -1,6 +1,6 @@
-# source link : https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-debian-8
+***# source link*** : https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-debian-8
 
-
+```bash
 # Step 1 — Install Apache
 apt-get install apache2
 
@@ -101,3 +101,4 @@ service apache2 reload
 
 
 # Step 5 — Test Apache with SSL
+```
