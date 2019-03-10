@@ -1,4 +1,4 @@
-** sync ntp ***
+** sync ntp **
 ```bash
 [root]# ntpdate -q time.bora.net
 
