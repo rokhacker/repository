@@ -17,7 +17,7 @@ Redirecting to /bin/systemctl start ntpd.service
 
 
 
-**apt remove**
+**apt remove on ubuntu**
 ```bash
 ####################################################################
 ##      MYSQL remove
@@ -39,3 +39,16 @@ sudo service mysql stop
 ```
 
 
+
+**install xrdp and tigervnc-server on centos 7**
+```bash
+# yum -y install xrdp tigervnc-server
+# systemctl start xrdp.service
+# systemctl enable xrdp.service
+
+# vi /etc/xrdp/xrdp.ini
+port=8880
+# firewall-cmd --permanent --add-port=8880/tcp
+# firewall-cmd --reload
+
+```
