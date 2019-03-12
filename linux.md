@@ -14,3 +14,28 @@ Redirecting to /bin/systemctl start ntpd.service
 [root]#
 
 ```
+
+
+
+**apt remove**
+```bash
+####################################################################
+##      MYSQL remove
+####################################################################
+
+sudo service mysql stop
+sudo apt-get remove --purge mysql-server mysql-client mysql-common
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo rm -rf /var/lib/mysql
+sudo rm -rf /etc/mysql
+
+
+####################################################################
+##      MYSQL install
+####################################################################
+sudo apt-get install mysql-client mysql-server
+sudo service mysql stop
+```
+
+
