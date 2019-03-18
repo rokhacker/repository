@@ -48,7 +48,7 @@ sudo service mysql stop
 
 # vi /etc/xrdp/xrdp.ini
 port=8880
-# firewall-cmd --permanent --add-port=8880/tcp
+# firewall-cmd --zone=public --permanent --add-port=8880-8889/tcp
 # firewall-cmd --reload
 
 
