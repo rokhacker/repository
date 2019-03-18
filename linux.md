@@ -40,7 +40,7 @@ sudo service mysql stop
 
 
 
-**install xrdp and tigervnc-server on centos 7**
+**setting iptables on centos 7**
 ```bash
 # yum -y install xrdp tigervnc-server
 # systemctl start xrdp.service
@@ -50,5 +50,17 @@ sudo service mysql stop
 port=8880
 # firewall-cmd --permanent --add-port=8880/tcp
 # firewall-cmd --reload
+
+
+
+# cat /etc/firewalld/zones/public.xml
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Public</short>
+  <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+  <service name="ssh"/>
+  <service name="dhcpv6-client"/>
+  <port protocol="tcp" port="8880-8889"/>
+</zone>
 
 ```
