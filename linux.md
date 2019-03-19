@@ -1,3 +1,17 @@
+**Edit System Service**
+```bash
+systemctl enable elasticsearch
+systemctl list-unit-files | grep elasticsearch
+elasticsearch.service                         enabled
+
+systemctl start elasticsearch
+systemctl status elasticsearch
+systemctl stop elasticsearch
+
+
+```
+
+
 **sync ntp**
 ```bash
 [root]# ntpdate -q time.bora.net
