@@ -84,16 +84,9 @@ port=8880
 ```bash
 yum install libjpeg* libpng* freetype* gd-* gcc gcc-c++ gdbm-devel libtermcap-devel
 
-cat /etc/yum.repos.d/MariaDB.repo
-[mariadb]
-name = MariaDB
-baseurl = http://yum.mariadb.org/10.1/centos7-amd64
-gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgcheck=1
-
-
-yum install MariaDB-server MariaDB-client
-
+####################################################################
+yum install httpd
+####################################################################
 ## setting new repository for php 7 because of default version is php 5
 rpm -qa | grep php
 yum remove php-*
@@ -104,10 +97,11 @@ rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 yum install php70w
 yum install php70w-mysql php70w-pdo php70w-pgsql php70w-odbc php70w-mbstring php70w-mcrypt php70w-gd
 yum install php70w-pear php70w-pdo_dblib php70w-pecl-imagick php70w-pecl-imagick-devel php70w-xml php70w-xmlrpc
-
-
 ####################################################################
 vi /etc/httpd/conf/httpd.conf
+
+Listen 8888
+
 User nobody
 Group nobody
 
@@ -121,9 +115,49 @@ ServerName 127.0.0.1:80
 AddType application/x-httpd-php .php .html .htm .inc
 AddType application/x-httpd-php-source .phps
 
+<VirtualHost *:8888>
+    ServerAdmin admin@localhost
+    DocumentRoot /var/www/html
+</VirtualHost>
+
 ####################################################################
 cat /var/www/html/index.php
 <?php phpinfo(); ?>
+####################################################################
+systemctl start httpd
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+
+
+systemctl status httpd.service
+
+httpd[1968]: (13)Permission denied: AH00072: make_sock: could not bind to address [::]:8888
+httpd[1968]: (13)Permission denied: AH00072: make_sock: could not bind to address 0.0.0.0:8888
+
+setenforce 0
+systemctl start httpd
+setenforce 1
+
+ps -ef|grep httpd
+root      2860     1  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache    2862  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache    2863  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache    2864  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache    2866  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache    2868  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+####################################################################
+
+
+
+####################################################################
+cat /etc/yum.repos.d/MariaDB.repo
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.1/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+
+yum install MariaDB-server MariaDB-client
 ####################################################################
 mysql_secure_installation
 
