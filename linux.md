@@ -144,6 +144,21 @@ apache    2863  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
 apache    2864  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
 apache    2866  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
 apache    2868  2860  0 12:47 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+
+####################################################################
+## For auto start during reboot
+####################################################################
+semanage port -l | grep http
+http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
+
+semanage port -m -t http_port_t -p tcp 8881
+ValueError: Port @tcp/8881 is not defined
+
+semanage port -a -t http_port_t -p tcp 8881
+semanage port -l | grep http
+http_port_t                    tcp      8881, 80, 81, 443, 488, 8008, 8009, 8443, 9000
+
+systemctl start httpd
 ####################################################################
 
 
