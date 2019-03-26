@@ -1,20 +1,20 @@
 ***# source link*** : https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-apache-for-centos-7
 
 ```bash
-yum -y install apache2
+yum -y install httpd
 
 # Step 1 : install mod_ssl
-yum install mod_ssl
+yum install mod_ssl openssl openssl-devel
 
 
 # Step 2 : create a new certificate
 
 mkdir /etc/ssl/private
 chmod 700 /etc/ssl/private
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt
 
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-cat /etc/ssl/certs/dhparam.pem | sudo tee -a /etc/ssl/certs/apache-selfsigned.crt
+cat /etc/ssl/certs/dhparam.pem | sudo tee -a /etc/ssl/certs/selfsigned.crt
 
 
 # Step 3 : setup certificate
@@ -26,8 +26,11 @@ ServerName www.example.com:443
 .
 .
 # SSLProtocol all -SSLv2
+SSLProtocol -All +TLSv1 +TLSv1.1 +TLSv1.2 -SSLv2 -SSLv3
 . . .
 # SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5:!SEED:!IDEA
+SSLCipherSuite RC4-SHA:AES128-SHA:HIGH:MEDIUM:!aNULL:!MD5
+SLHonorCipherOrder on
 .
 .
 SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
