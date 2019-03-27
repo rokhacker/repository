@@ -192,3 +192,29 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 
 ```
+
+
+**setup basic auth of apache on CentOS 7**
+```bash
+vi  /etc/httpd/conf.d/ssl.conf
+<Directory /var/www/html/>
+    AuthType Basic
+    AuthName "Hello World!!! Authentication Only!!!"
+    AuthUserFile /etc/httpd/conf/.htpasswd
+    require valid-user
+</Directory>
+
+
+htpasswd -c /etc/httpd/conf/.htpasswd user_account
+New password:
+Re-type new password:
+cat /etc/httpd/conf/.htpasswd
+suser:$apr1$yUzvD0IO$4/KkYmasuVdfYBTAM3s.0N.
+
+apachectl configtest
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 192.168.0.15. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
+
+systemctl restart httpd
+
+```
