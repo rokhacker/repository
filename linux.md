@@ -105,7 +105,7 @@ Listen 8888
 User nobody
 Group nobody
 
-ServerName 127.0.0.1:80
+ServerName 127.0.0.1:8888
 
 <IfModule dir_module>
         DirectoryIndex index.html index.htm index.php
