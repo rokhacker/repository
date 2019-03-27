@@ -19,8 +19,13 @@ cat /etc/ssl/certs/dhparam.pem | sudo tee -a /etc/ssl/certs/selfsigned.crt
 
 # Step 3 : setup certificate
 vi /etc/httpd/conf.d/ssl.conf
+
+Listen 443 https
+.
+.
 <VirtualHost _default_:443>
-. . .
+. 
+.
 DocumentRoot "/var/www/example.com/public_html"
 ServerName www.example.com:443
 .
