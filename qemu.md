@@ -1,4 +1,4 @@
-**docker**
+**qemu**
 ```bash
 **file info
 $ qemu-img info linux.img
