@@ -12,9 +12,18 @@ Format specific information:
     refcount bits: 16
 $
 
-**boot
+**Can't get ip
+mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.bak
+reboot
+
+**boot for console only
 $ qemu-system-x86_64 -m 2048 -hda linux.img -boot d
 
+## Port Forwarding option
+-net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::1443-:443,hostfwd=tcp::8080-:80
 
+## connection
+$ ssh user@localhost -p2222
+$ curl http://localhost:8080
 
 ```
