@@ -155,6 +155,7 @@ semanage port -m -t http_port_t -p tcp 8881
 ValueError: Port @tcp/8881 is not defined
 
 semanage port -a -t http_port_t -p tcp 8881
+semanage port -a -t http_port_t -p tcp 8880-8889
 semanage port -l | grep http
 http_port_t                    tcp      8881, 80, 81, 443, 488, 8008, 8009, 8443, 9000
 
