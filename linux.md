@@ -1,3 +1,14 @@
+**sudo command is so slow on terminal**
+```bash
+$ hosname
+home
+
+Add your hostname & ip
+$ cat /etc/hosts
+127.0.0.1 localhost home
+$
+```
+
 **Edit System Service**
 ```bash
 systemctl enable elasticsearch
