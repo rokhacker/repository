@@ -300,6 +300,8 @@ A. Convert Private Key to ppk format
  - Save private key : save ppk format [+] Empty password means no password when connection.
  
 B. Try connect using Private Key(id_rsa.ppk)
+  - Putty > Connection > SSH > Auth > Private key file
+  
 login as: suser
 
 Authenticating with public key "imported-openssh-key"
