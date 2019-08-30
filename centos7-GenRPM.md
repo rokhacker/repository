@@ -58,17 +58,17 @@ install -m 755 hello-world.sh %{buildroot}/usr/bin/hello-world.sh
 **4. build to RPM**
 This step occurs errors below but make rpmbuild directory.
 ```bash
-$ rpmbuild -ba hello-world.spec
-Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.6p1Z2x
+]$ rpmbuild -ba hello-world.spec
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.dXYgjQ
 + umask 022
 + cd /home/suser/rpmbuild/BUILD
 + exit 0
-Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.OlFepU
+Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.E9gIaA
 + umask 022
 + cd /home/suser/rpmbuild/BUILD
-+ cp /tmp/hello-world.sh hello-world.sh
++ gcc -o hello-world /tmp/hello-world.c
 + exit 0
-Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.A523Lg
+Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.9Np5Uk
 + umask 022
 + cd /home/suser/rpmbuild/BUILD
 + '[' /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64 '!=' / ']'
@@ -77,7 +77,7 @@ Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.A523Lg
 + mkdir -p /home/suser/rpmbuild/BUILDROOT
 + mkdir /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64
 + mkdir -p /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64/usr/bin/
-+ install -m 755 hello-world.sh /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64/usr/bin/hello-world.sh
++ install -m 755 hello-world /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64/usr/bin/hello-world
 + /usr/lib/rpm/check-buildroot
 + /usr/lib/rpm/redhat/brp-compress
 + /usr/lib/rpm/redhat/brp-strip /usr/bin/strip
@@ -89,15 +89,16 @@ Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.A523Lg
 Processing files: hello-world-0.0.1-0.0.1.x86_64
 Provides: hello-world = 0.0.1-0.0.1 hello-world(x86-64) = 0.0.1-0.0.1
 Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4-1 rpmlib(FileDigests) <= 4.6.0-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
-Requires: /bin/sh
+Requires: libc.so.6()(64bit) libc.so.6(GLIBC_2.2.5)(64bit) rtld(GNU_HASH)
 Checking for unpackaged file(s): /usr/lib/rpm/check-files /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64
 Wrote: /home/suser/rpmbuild/SRPMS/hello-world-0.0.1-0.0.1.src.rpm
 Wrote: /home/suser/rpmbuild/RPMS/x86_64/hello-world-0.0.1-0.0.1.x86_64.rpm
-Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.8JzsEm
+Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.sz4HQC
 + umask 022
 + cd /home/suser/rpmbuild/BUILD
 + /usr/bin/rm -rf /home/suser/rpmbuild/BUILDROOT/hello-world-0.0.1-0.0.1.x86_64
 + exit 0
+$
 ```
 
 
@@ -109,19 +110,19 @@ $ cd rpmbuild/RPMS/x86_64/
 $ ls
 hello-world-0.0.1-0.0.1.x86_64.rpm
 $ sudo rpm -ivh hello-world-0.0.1-0.0.1.x86_64.rpm
-[sudo] password for suser:
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:hello-world-0.0.1-0.0.1          ################################# [100%]
-$ hello-world.sh
+[suser@mojave x86_64]$ hello-world
 ================
 hello world
 ================
+
 $
 
 $ sudo rpm -e hello-world
-$ hello-world.sh
--bash: /usr/bin/hello-world.sh: No such file or directory
+$ hello-world
+bash: hello-world: command not found...
 $
 
 ```
