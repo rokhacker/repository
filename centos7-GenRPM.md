@@ -1,12 +1,12 @@
 **Generate RPM**
-1. install rpmbuild
+**1. install rpmbuild**
 ```bash
 $ yum install rpm-build -y
 
 ```
 
 
-2. write spec file
+**2. write spec file**
 ```bash
 $ cat hello-world.sh
 Name:       hello-world
