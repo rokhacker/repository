@@ -31,7 +31,10 @@ License:    GPL
 hello-world-0.0.1
 
 %prep
-# previous step of build
+# previous execute of install
+
+%post
+# post execute of install
 
 %build
 #cat > hello-world.sh <<EOF
@@ -48,6 +51,12 @@ install -m 755 hello-world.sh %{buildroot}/usr/bin/hello-world.sh
 
 %files
 /usr/bin/hello-world.sh
+
+%preun
+# previous execute of uninstall
+
+%postun
+# post execute of uninstall
 
 %changelog
 * Fri Aug 30 2019 suser <suser@example.com> - 0.0.1
