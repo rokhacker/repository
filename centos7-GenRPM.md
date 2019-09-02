@@ -51,7 +51,7 @@ install -m 755 hello-world.sh %{buildroot}/usr/bin/hello-world.sh
 
 %changelog
 * Fri Aug 30 2019 suser <suser@example.com> - 0.0.1
-
+- Initial RPM release
 ```
 
 
