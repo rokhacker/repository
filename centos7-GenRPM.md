@@ -57,6 +57,8 @@ install -m 755 hello-world.sh %{buildroot}/usr/bin/hello-world.sh
 
 %postun
 # post execute of uninstall
+# /sbin/userdel -r suser
+# /bin/rm -rf /etc/suser.tmp
 
 %changelog
 * Fri Aug 30 2019 suser <suser@example.com> - 0.0.1
